@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>우리동작 카드뉴스</title>
+  <style>
+    body{
+      margin:0;
+      font-family:sans-serif;
+      background:#f2f4f8;
+      text-align:center;
+    }
+
+    .wrap{
+      max-width:720px;
+      margin:0 auto;
+      padding:20px;
+    }
+
+    h1{
+      font-size:30px;
+      margin:20px 0 10px;
+    }
+
+    .guide{
+      font-size:15px;
+      color:#666;
+      margin-bottom:16px;
+      line-height:1.5;
+    }
+
+    .slide{
+      display:none;
+      background:white;
+      border-radius:20px;
+      padding:40px 30px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+      min-height:380px;
+      box-sizing:border-box;
+    }
+
+    .slide.active{
+      display:block;
+    }
+
+    .slide-number{
+      font-size:16px;
+      color:#666;
+      margin-bottom:20px;
+    }
+
+    .slide h2{
+      font-size:28px;
+      margin-bottom:20px;
+      color:#1f3c88;
+    }
+
+    .slide p{
+      font-size:23px;
+      line-height:1.7;
+      color:#222;
+      white-space:pre-line;
+    }
+
+    .controls{
+      margin:20px 0;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    button{
+      font-size:18px;
+      padding:12px 20px;
+      border:none;
+      border-radius:12px;
+      background:#2c7be5;
+      color:white;
+      cursor:pointer;
+    }
+
+    button:hover{
+      opacity:0.9;
+    }
+
+    .secondary{
+      background:#6c757d;
+    }
+
+    .danger{
+      background:#dc3545;
+    }
+
+    .dots{
+      margin-top:10px;
+    }
+
+    .dot{
+      display:inline-block;
+      width:12px;
+      height:12px;
+      margin:0 4px;
+      border-radius:50%;
+      background:#cfd8e3;
+      cursor:pointer;
+    }
+
+    .dot.active{
+      background:#2c7be5;
+    }
+
+    .status{
+      margin-top:14px;
+      font-size:15px;
+      color:#444;
+    }
+
+    @media (max-width: 600px){
+      .slide{
+        padding:30px 20px;
+        min-height:320px;
+      }
+
+      .slide h2{
+        font-size:24px;
+      }
+
+      .slide p{
+        font-size:20px;
+      }
+
+      button{
+        font-size:16px;
+        padding:10px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>우리동작 카드뉴스</h1>
+    <div class="guide">
+      시작 버튼을 누르면 현재 장부터 자동 음성 재생 후 다음 장으로 넘어갑니다.
+    </div>
+
+    <div class="slide active">
+      <div class="slide-number">1 / 8</div>
+      <h2>1장</h2>
+      <p>여기에 1번 카드뉴스 내용을 넣으세요.</p>
+    </div>
+
+    <div class="slide">
+      <div class="slide-number">2 / 8</div>
+      <h2>2장</h2>
+      <p>여기에 2번 카드뉴스 내용을 넣으세요.</p>
+    </div>
+
+    <div class="slide">
+      <div class="slide-number">3 / 8</div>
+      <h2>3장</h2>
+      <p>여기에 3번 카드뉴스 내용을 넣으세요.</p>
+    </div>
+
+    <div class="slide">
+      <div class="slide-number">4 / 8</div>
+      <h2>4장</h2>
+      <p>여기에 4번 카드뉴스 내용을 넣으세요.</p>
+    </div>
+
+    <div class="slide">
+      <div class="slide-number">5 / 8</div>
+      <h2>5장</h2>
+      <p>여기에 5번 카드뉴스 내용을 넣으세요.</p>
+    </div>
+
+    <div class="slide">
+      <div class="slide-number">6 / 8</div>
+      <h2>6장</h2>
+      <p>여기에 6번 카드뉴스 내용을 넣으세요.</p>
+    </div>
+
+    <div class="slide">
+      <div class="slide-number">7 / 8</div>
+      <h2>7장</h2>
+      <p>여기에 7번 카드뉴스 내용을 넣으세요.</p>
+    </div>
+
+    <div class="slide">
+      <div class="slide-number">8 / 8</div>
+      <h2>8장</h2>
+      <p>여기에 8번 카드뉴스 내용을 넣으세요.</p>
+    </div>
+
+    <div class="controls">
+      <button onclick="prevSlide()">이전</button>
+      <button onclick="startAutoPlay()">자동 재생 시작</button>
+      <button class="secondary" onclick="speakCurrentSlide()">현재 장 듣기</button>
+      <button class="danger" onclick="stopAutoPlay()">정지</button>
+      <button onclick="nextSlide()">다음</button>
+    </div>
+
+    <div class="dots">
+      <span class="dot active" onclick="manualGoToSlide(0)"></span>
+      <span class="dot" onclick="manualGoToSlide(1)"></span>
+      <span class="dot" onclick="manualGoToSlide(2)"></span>
+      <span class="dot" onclick="manualGoToSlide(3)"></span>
+      <span class="dot" onclick="manualGoToSlide(4)"></span>
+      <span class="dot" onclick="manualGoToSlide(5)"></span>
+      <span class="dot" onclick="manualGoToSlide(6)"></span>
+      <span class="dot" onclick="manualGoToSlide(7)"></span>
+    </div>
+
+    <div class="status" id="status">대기 중</div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    const statusEl = document.getElementById("status");
+
+    let autoPlay = false;
+    let currentUtterance = null;
+
+    function showSlide(index){
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+        dots[i].classList.toggle("active", i === index);
+      });
+      currentSlide = index;
+    }
+
+    function updateStatus(text){
+      statusEl.innerText = text;
+    }
+
+    function getSlideSpeechText(index){
+      const number = slides[index].querySelector(".slide-number")?.innerText || "";
+      const title = slides[index].querySelector("h2")?.innerText || "";
+      const body = slides[index].querySelector("p")?.innerText || "";
+      return `${number}. ${title}. ${body}`;
+    }
+
+    function speakText(text, onEndCallback){
+      window.speechSynthesis.cancel();
+
+      const speech = new SpeechSynthesisUtterance(text);
+      currentUtterance = speech;
+      speech.lang = "ko-KR";
+      speech.rate = 1;
+      speech.pitch = 1;
+
+      speech.onstart = function(){
+        updateStatus(`${currentSlide + 1}장 음성 재생 중`);
+      };
+
+      speech.onend = function(){
+        currentUtterance = null;
+        if (typeof onEndCallback === "function") {
+          onEndCallback();
+        }
+      };
+
+      speech.onerror = function(){
+        currentUtterance = null;
+        updateStatus("음성 재생 중 오류가 발생했습니다");
+      };
+
+      window.speechSynthesis.speak(speech);
+    }
+
+    function speakCurrentSlide(){
+      autoPlay = false;
+      const text = getSlideSpeechText(currentSlide);
+      speakText(text, function(){
+        updateStatus(`${currentSlide + 1}장 재생 완료`);
+      });
+    }
+
+    function playSlideAndAdvance(){
+      if (!autoPlay) return;
+
+      const text = getSlideSpeechText(currentSlide);
+
+      speakText(text, function(){
+        if (!autoPlay) return;
+
+        if (currentSlide < slides.length - 1) {
+          currentSlide++;
+          showSlide(currentSlide);
+
+          setTimeout(function(){
+            playSlideAndAdvance();
+          }, 800);
+        } else {
+          autoPlay = false;
+          updateStatus("전체 카드뉴스 재생이 끝났습니다");
+        }
+      });
+    }
+
+    function startAutoPlay(){
+      autoPlay = true;
+      updateStatus("자동 재생 시작");
+      playSlideAndAdvance();
+    }
+
+    function stopAutoPlay(){
+      autoPlay = false;
+      window.speechSynthesis.cancel();
+      updateStatus("정지됨");
+    }
+
+    function nextSlide(){
+      stopAutoPlay();
+      let next = currentSlide + 1;
+      if (next >= slides.length) next = 0;
+      showSlide(next);
+      updateStatus(`${currentSlide + 1}장으로 이동`);
+    }
+
+    function prevSlide(){
+      stopAutoPlay();
+      let prev = currentSlide - 1;
+      if (prev < 0) prev = slides.length - 1;
+      showSlide(prev);
+      updateStatus(`${currentSlide + 1}장으로 이동`);
+    }
+
+    function manualGoToSlide(index){
+      stopAutoPlay();
+      showSlide(index);
+      updateStatus(`${currentSlide + 1}장으로 이동`);
+    }
+
+    // 일부 브라우저에서 음성 재생은 사용자 클릭 후에만 작동합니다.
+    // 그래서 페이지 열리자마자 자동 재생보다는 "자동 재생 시작" 버튼 방식이 가장 안정적입니다.
+    showSlide(0);
+  </script>
+</body>
+</html>
