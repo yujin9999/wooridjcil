@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>우리동작 카드뉴스</title>
+
+<style>
+body{
+font-family: sans-serif;
+text-align:center;
+background:#f4f4f4;
+margin:0;
+}
+
+.card{
+background:white;
+margin:20px;
+padding:30px;
+border-radius:20px;
+font-size:22px;
+line-height:1.6;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+button{
+font-size:20px;
+padding:15px 30px;
+border:none;
+border-radius:10px;
+background:#2c7be5;
+color:white;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>우리동작 카드뉴스</h1>
+
+<div class="card" id="text">
+2026년 활동지원사 보수교육이 진행되었습니다.
+근로계약서 갱신 안내와 장애유형별 서비스 제공방법,
+부정수급 예방 교육과 재난 대응 및 응급처치 교육을 진행하였습니다.
+</div>
+
+<button onclick="speak()">음성으로 듣기</button>
+
+<script>
+function speak(){
+let text = document.getElementById("text").innerText;
+let speech = new SpeechSynthesisUtterance(text);
+speech.lang = "ko-KR";
+speech.rate = 1;
+speech.pitch = 1;
+
+window.speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>
