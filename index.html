@@ -318,7 +318,7 @@
       const speech = new SpeechSynthesisUtterance(text);
       speech.lang = "ko-KR";
       speech.rate = 1.0;
-      speech.pitch = 1.1;
+      speech.pitch = 1.0;
 
       speech.onstart = function(){
         updateStatus(`${currentSlide + 1}장 음성 재생 중`);
