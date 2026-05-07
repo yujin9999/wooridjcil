@@ -3,280 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>우리동작장애인자립생활센터</title>
- .survey-button{
+ <title>우리동작장애인자립생활센터</title>
 
-  position:absolute;
-  top:20px;
-  right:40px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:120px;
-  height:48px;
-
-  background:#28a745;
-  color:white;
-
-  border-radius:14px;
-
-  text-decoration:none;
-
-  font-size:16px;
-  font-weight:bold;
-
-  box-shadow:0 4px 12px rgba(0,0,0,0.2);
-
-  z-index:20;
-
-  transition:0.2s;
-
-}
-
-.survey-button:hover{
-
-  transform:translateY(-2px);
-  opacity:0.95;
-
-}
-
-@media (max-width:600px){
-
-  .survey-button{
-
-    top:12px;
-    right:24px;
-
-    width:95px;
-    height:40px;
-
-    font-size:13px;
-
-    border-radius:10px;
-
+<style>
+  body{
+    margin:0;
+    font-family:sans-serif;
+    background:#f2f4f8;
+    text-align:center;
   }
 
-}
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:20px;
+  }
 
-}
-    body{
-      margin:0;
-      font-family:sans-serif;
-      background:#f2f4f8;
-      text-align:center;
-    }
+  .card-image{
+    width:100%;
+    aspect-ratio:1 / 1;
+    object-fit:cover;
+    border-radius:20px;
+    display:block;
+  }
 
-    .wrap{
-      max-width:720px;
-      margin:0 auto;
-      padding:20px;
-    }
+  h1{
+    font-size:30px;
+    margin:20px 0 10px;
+  }
 
-    .card-image{
-      width:100%;
-      aspect-ratio:1 / 1;
-      object-fit:cover;
-      border-radius:20px;
-      display:block;
-    }
+  .guide{
+    font-size:15px;
+    color:#666;
+    margin-bottom:16px;
+    line-height:1.5;
+  }
 
-    h1{
-      font-size:30px;
-      margin:20px 0 10px;
-    }
+  .slide{
+    display:none;
+    background:white;
+    border-radius:20px;
+    padding:0;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    min-height:380px;
+    box-sizing:border-box;
+    position:relative;
+  }
 
-    .guide{
-      font-size:15px;
-      color:#666;
-      margin-bottom:16px;
-      line-height:1.5;
-    }
+  .slide.active{
+    display:block;
+  }
 
+  .survey-button{
+    position:absolute;
+    top:20px;
+    right:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:120px;
+    height:48px;
+    background:#28a745;
+    color:white;
+    border-radius:14px;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:bold;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    z-index:20;
+  }
+
+  .survey-button:hover{
+    transform:translateY(-2px);
+    opacity:0.95;
+  }
+
+  .detail-link{
+    position:absolute;
+    left:3%;
+    bottom:5%;
+    display:inline-block;
+    padding:12px 18px;
+    background:#28a745;
+    color:white;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:16px;
+    line-height:1.2;
+    z-index:10;
+  }
+
+  .event-link{
+    position:absolute;
+    left:50%;
+    bottom:7%;
+    transform:translateX(-50%);
+    display:inline-block;
+    padding:12px 18px;
+    background:#2c7be5;
+    color:white;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:16px;
+    z-index:10;
+    line-height:1.2;
+  }
+
+  .controls{
+    margin:20px 0;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+
+  button{
+    font-size:18px;
+    padding:12px 20px;
+    border:none;
+    border-radius:12px;
+    background:#2c7be5;
+    color:white;
+    cursor:pointer;
+  }
+
+  .secondary{
+    background:#6c757d;
+  }
+
+  .danger{
+    background:#dc3545;
+  }
+
+  .dots{
+    margin-top:10px;
+  }
+
+  .dot{
+    display:inline-block;
+    width:12px;
+    height:12px;
+    margin:0 4px;
+    border-radius:50%;
+    background:#cfd8e3;
+    cursor:pointer;
+    border:none;
+  }
+
+  .dot.active{
+    background:#2c7be5;
+  }
+
+  .status{
+    margin-top:14px;
+    font-size:12px;
+    color:#444;
+    min-height:1.2em;
+  }
+
+  .sr-only{
+    position:absolute !important;
+    width:1px !important;
+    height:1px !important;
+    padding:0 !important;
+    margin:-1px !important;
+    overflow:hidden !important;
+    clip:rect(0, 0, 0, 0) !important;
+    white-space:nowrap !important;
+    border:0 !important;
+  }
+
+  @media (max-width:600px){
     .slide{
-      display:none;
-      background:white;
-      border-radius:20px;
-      padding:0;
-      box-shadow:0 8px 20px rgba(0,0,0,0.08);
-      min-height:380px;
-      box-sizing:border-box;
-      position:relative;
-    }
-
-    .slide.active{
-      display:block;
-    }
-
-    .slide-number{
-      font-size:16px;
-      color:#666;
-      margin-bottom:20px;
-    }
-
-    .slide h2{
-      font-size:28px;
-      margin-bottom:20px;
-      color:#1f3c88;
-    }
-
-    .slide p{
-      font-size:23px;
-      line-height:1.7;
-      color:#222;
-      white-space:pre-line;
-    }
-
-    .controls{
-      margin:20px 0;
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
+      min-height:320px;
     }
 
     button{
-      font-size:18px;
-      padding:12px 20px;
-      border:none;
-      border-radius:12px;
-      background:#2c7be5;
-      color:white;
-      cursor:pointer;
+      font-size:16px;
+      padding:10px 16px;
     }
 
-    button:hover{
-      opacity:0.9;
-    }
-
-    .secondary{
-      background:#6c757d;
-    }
-
-    .danger{
-      background:#dc3545;
+    .survey-button{
+      top:12px;
+      right:24px;
+      width:95px;
+      height:40px;
+      font-size:13px;
+      border-radius:10px;
     }
 
     .detail-link{
-      position:absolute;
+      font-size:12px;
+      padding:6px 10px;
       left:3%;
-      bottom:5%;
-      display:inline-block;
-      padding:12px 18px;
-      background:#28a745;
-      color:white;
-      border-radius:12px;
-      text-decoration:none;
-      font-size:16px;
-      line-height:1.2;
-      z-index:10;
-    }
-
-    .detail-link:hover{
-      opacity:0.9;
+      bottom:3%;
     }
 
     .event-link{
-      position:absolute;
-      left:50%;
-      bottom:7%;
-      transform:translateX(-50%);
-      display:inline-block;
-      padding:12px 18px;
-      background:#2c7be5;
-      color:white;
-      border-radius:12px;
-      text-decoration:none;
-      font-size:16px;
-      z-index:10;
-      line-height:1.2;
+      font-size:14px;
+      padding:10px 14px;
+      bottom:5%;
     }
-
-    .event-link:hover{
-      opacity:0.9;
-    }
-
-    .dots{
-      margin-top:10px;
-    }
-
-    .dot{
-      display:inline-block;
-      width:12px;
-      height:12px;
-      margin:0 4px;
-      border-radius:50%;
-      background:#cfd8e3;
-      cursor:pointer;
-      border:none;
-    }
-
-    .dot.active{
-      background:#2c7be5;
-    }
-
-    .status{
-      margin-top:14px;
-      font-size:12px;
-      color:#444;
-      min-height:1.2em;
-    }
-
-    .sr-only{
-      position:absolute !important;
-      width:1px !important;
-      height:1px !important;
-      padding:0 !important;
-      margin:-1px !important;
-      overflow:hidden !important;
-      clip:rect(0, 0, 0, 0) !important;
-      white-space:nowrap !important;
-      border:0 !important;
-    }
-
-    @media (max-width: 600px){
-      .slide{
-        padding:0;
-        min-height:320px;
-      }
-
-      button{
-        font-size:16px;
-        padding:10px 16px;
-      }
-
-      .detail-link{
-  position:absolute;
-  left:4%;
-  bottom:5%;
-  display:inline-block;
-  padding:12px 18px;
-  background:#28a745;
-  color:white;
-  border-radius:12px;
-  text-decoration:none;
-  font-size:16px;
-  line-height:1.2;
-  z-index:10;
-}
-
-@media (max-width: 600px){
-  .detail-link{
-    font-size:12px;
-    padding:6px 10px;
-    left:3%;
-    bottom:3%;
   }
-}
-      .event-link{
-        font-size:14px;
-        padding:10px 14px;
-        bottom:5%;
-      }
-    }
-  </style>
+</style>
 </head>
 <body>
   <div class="wrap">
