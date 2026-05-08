@@ -148,20 +148,27 @@
     border:0 !important;
   }
 
-  @media (max-width:600px){
-    .slide{
-      min-height:320px;
-    }
-      .controls{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:8px;
+ @media (max-width:600px){
+
+  .slide{
+    padding:0;
+    min-height:320px;
   }
-    button{
-      font-size:16px !important;
-      padding:10px 16px !important;
-          border-radius:12px !important;
-    }
+
+  .controls{
+    margin:20px 0;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+
+  button{
+    font-size:16px !important;
+    padding:10px 16px !important;
+    border-radius:12px !important;
+  }
 
   .survey-button{
     top:3%;
@@ -169,13 +176,21 @@
     font-size:12px;
     padding:6px 10px;
   }
-    .detail-link{
-      font-size:12px;
-      padding:6px 10px;
-      left:3%;
-      bottom:3%;
-    }
+
+  .detail-link{
+    font-size:12px;
+    padding:6px 10px;
+    left:3%;
+    bottom:3%;
   }
+
+  .event-link{
+    font-size:14px;
+    padding:10px 14px;
+    bottom:5%;
+  }
+
+}
 </style>
 </head>
 <body>
