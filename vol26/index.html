@@ -160,8 +160,26 @@
       white-space:nowrap !important;
       border:0 !important;
     }
+.back-btn{
+  margin-top:20px;
+  padding:12px 20px;
+  font-size:16px;
+  border:none;
+  border-radius:12px;
+  background:#6c757d;
+  color:white;
+  cursor:pointer;
+}
 
+.back-btn:hover{
+  opacity:0.9;
+}
+    
     @media (max-width: 600px){
+  .back-btn{
+    font-size:14px;
+    padding:10px 14px;
+  }
       .slide{
         padding:0;
         min-height:320px;
@@ -435,8 +453,10 @@ IT기기 생활용구 등 시각장애인의 정보접근성 향상을 위한 
     >
       대기 중
     </div>
+    <button onclick="history.back()" class="back-btn">
+  이전 목록으로 돌아가기
+</button>
   </div>
-
   <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll(".slide");
