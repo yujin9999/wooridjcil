@@ -462,6 +462,25 @@ IT기기 생활용구 등 시각장애인의 정보접근성 향상을 위한 
   <div class="wrap">
   </div>
   <script>
+    let wakeLock = null;
+
+async function requestWakeLock(){
+  try{
+    if("wakeLock" in navigator){
+      wakeLock = await navigator.wakeLock.request("screen");
+      updateStatus("화면 꺼짐 방지 실행 중");
+    }
+  } catch(error){
+    console.log("화면 꺼짐 방지 실패:", error);
+  }
+}
+
+async function releaseWakeLock(){
+  if(wakeLock !== null){
+    await wakeLock.release();
+    wakeLock = null;
+  }
+}
     let currentSlide = 0;
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".dot");
@@ -559,6 +578,7 @@ IT기기 생활용구 등 시각장애인의 정보접근성 향상을 위한 
         } else {
           autoPlay = false;
           updateAutoPlayButtonState(false);
+          releaseWakeLock();
           updateStatus("전체 카드뉴스 재생이 끝났습니다");
         }
       });
@@ -568,6 +588,7 @@ IT기기 생활용구 등 시각장애인의 정보접근성 향상을 위한 
       autoPlay = true;
       updateAutoPlayButtonState(true);
       updateStatus("자동 재생 시작");
+        requestWakeLock();
       playSlideAndAdvance();
     }
 
@@ -575,6 +596,7 @@ IT기기 생활용구 등 시각장애인의 정보접근성 향상을 위한 
       autoPlay = false;
       updateAutoPlayButtonState(false);
       stopCurrentAudio();
+      releaseWakeLock();
       updateStatus("정지됨");
     }
 
