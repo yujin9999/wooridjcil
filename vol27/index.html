@@ -223,9 +223,69 @@
     bottom:3%;
   }
 }
+    .popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.popup-box{
+  position:relative;
+  width:90%;
+  max-width:500px;
+}
+
+.popup-image{
+  width:100%;
+  display:block;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.35);
+}
+
+.popup-close{
+  position:absolute;
+  top:-12px;
+  right:-12px;
+
+  width:40px;
+  height:40px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#fff;
+  color:#333;
+
+  font-size:24px;
+  cursor:pointer;
+
+  box-shadow:0 2px 8px rgba(0,0,0,.3);
+}
   </style>
 </head>
 <body>
+  <div id="popup" class="popup-overlay">
+
+  <div class="popup-box">
+
+    <button class="popup-close" onclick="closePopup()">
+      ×
+    </button>
+
+    <a href="https://원하는주소" target="_blank">
+      <img
+        src="images/popup.png"
+        alt="We're live 홍보 포스터"
+        class="popup-image">
+    </a>
+
+  </div>
+
+</div>
   <div class="wrap">
         <center>
   <a href="../index.html" class="back-button">
@@ -560,5 +620,10 @@
     showSlide(0);
     updateAutoPlayButtonState(false);
   </script>
+    <script>
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+</script>
 </body>
 </html>
