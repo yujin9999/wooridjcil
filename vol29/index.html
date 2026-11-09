@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>우리동작 제29호 웹진 (9·10월)</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f2f4f8;
+      text-align: center;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin: 20px 0 10px;
+    }
+
+    .guide {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 12px 18px;
+      background: #444;
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .slide {
+      display: none;
+      background: white;
+      border-radius: 20px;
+      padding: 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      min-height: 380px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .card-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .controls {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      background: #2c7be5;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    .dot:focus-visible {
+      outline: 3px solid #ff9800;
+      outline-offset: 3px;
+    }
+
+    .secondary {
+      background: #6c757d;
+    }
+
+    .danger {
+      background: #dc3545;
+    }
+
+    .dots {
+      margin-top: 10px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 4px;
+      border-radius: 50%;
+      background: #cfd8e3;
+      cursor: pointer;
+      border: none;
+    }
+
+    .dot.active {
+      background: #2c7be5;
+    }
+
+    .status {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #444;
+      min-height: 1.2em;
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .survey-button {
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      display: inline-block;
+      padding: 12px 18px;
+      background: #2c7be5;
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 16px;
+      z-index: 10;
+    }
+
+    /* 행사 포스터 팝업 */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .popup-box {
+      width: 100%;
+      max-width: 500px;
+      max-height: 95vh;
+      overflow-y: auto;
+      text-align: center;
+    }
+
+    .popup-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .popup-exit {
+      margin-top: 15px;
+      padding: 12px 30px;
+      background: #03c75a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 23px;
+      }
+
+      .slide {
+        min-height: 320px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 10px 16px;
+      }
+
+      .survey-button {
+        top: 3%;
+        right: 10%;
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <a
+      href="https://jsh0902.github.io/webzine/"
+      class="back-button">
+      ← 이전 목록으로 돌아가기
+    </a>
+
+    <h1>우리동작 제29호 웹진 (9·10월)</h1>
+
+    <div class="guide" id="autoplay-guide">
+      자동 재생 시작 버튼을 누르면 현재 장부터 음성이 재생되고,
+      각 장의 음성이 끝나면 다음 장으로 자동으로 넘어갑니다.
+    </div>
+
+    <!-- 표지 : 1페이지 -->
+    <div class="slide active"
+         aria-hidden="false"
+         aria-label="1번 카드뉴스">
+
+      <div class="sr-only">1 / 8</div>
+      <h2 class="sr-only">제29호 우리동작 웹진</h2>
+
+      <img
+        src="images/card1.png"
+        alt="제29호 우리동작 웹진 표지"
+        class="card-image">
+
+      <p class="sr-only">
+        안녕하세요. 제29호 우리동작 웹진을 발간하였습니다.
+
+        표지 설명:
+        한강을 따라 가을 낙엽이 아름답게 흩날리고,
+        주황색과 노란색으로 물든 단풍나무가 늘어선
+        산책길을 다섯 명의 사람들이 함께 걷고 있는 모습.
+        그중 한 명은 휠체어를 이용하고 있으며,
+        다른 한 명은 흰지팡이를 들고 안내견과 함께 걷고 있다.
+      </p>
+    </div>
+
+    <!-- 원고 1 : 2페이지 -->
+    <div class="slide"
+         aria-hidden="true"
+         aria-label="2번 카드뉴스">
+
+      <div class="sr-only">2 / 8</div>
+      <h2 class="sr-only">
+        시각장애인 골프교실 인생샷
+      </h2>
+
+      <img
+        src="images/card2.png"
+        alt="시각장애인 골프교실 인생샷"
+        class="card-image">
+
+      <p class="sr-only">
+        시각장애인 골프교실 인생샷.
+
+        2026년 생활체육교실 및 동호회 지원 사업으로
+        4월부터 9월까지 매주 수요일,
+        시각장애인 골프교실 ‘인생샷’을 진행했습니다.
+
+        더 멋진 스윙을 향한 도전!
+        기본자세부터 스윙 기술까지 차근차근 다듬으며
+        실력을 쑥쑥 키워나갔습니다.
+        반복되는 연습 끝에 공을 정확히 맞혔을 때의
+        짜릿한 손맛은 그야말로 감동!
+        서로의 멋진 샷에 박수를 보내고 응원하며
+        웃음꽃도 피어났습니다.
+
+        골프 실력은 물론 자신감과 친목까지
+        쌓을 수 있었던 뜻깊은 시간,
+        앞으로도 필드 위에서 멋진 ‘인생샷’을
+        이어가길 응원합니다!
+
+        사진 설명:
+        참여자들에게 올바른 골프 자세를 지도하는 강사와
+        진지한 자세로 수업에 임하며
+        골프 연습에 집중하는 참여자들의 모습.
+      </p>
+    </div>
+
+    <!-- 원고 2 : 3페이지 -->
+    <div class="slide"
+         aria-hidden="true"
+         aria-label="3번 카드뉴스">
+
+      <div class="sr-only">3 / 8</div>
+      <h2 class="sr-only">동료상담가 보수교육</h2>
+
+      <img
+        src="images/card3.png"
+        alt="동료상담가 보수교육"
+        class="card-image">
+
+      <p class="sr-only">
+        동료상담가 보수교육.
+
+        10월 13일부터 14일까지
+        동료상담가 10명을 대상으로
+        동료상담 역량 강화를 위한
+        보수교육을 진행했습니다.
+
+        이번 교육은 장애인자립생활 패러다임의 변화와
+        장애인 정책 및 법·제도,
+        AI 활용 교육, 동료상담 기법 등
+        다양한 주제로 이루어졌습니다.
+
+        장애인의 권리와 정책에 대한 이해를 높이고,
+        동료상담에 필요한 지식과 기법을 익혔습니다.
+
+        이번 배움이 지역사회에서 장애동료의
+        자립생활을 지원하는 힘이 되기를 기대합니다.
+
+        사진 설명:
+        서로 의견을 나누며 웃음꽃을 피우는
+        동료상담가들의 모습.
+        보수교육 수료증을 들고 함께 촬영한 단체사진.
+      </p>
+    </div>
+
+    <!-- 원고 3 : 4페이지 -->
+    <div class="slide"
+         aria-hidden="true"
+         aria-label="4번 카드뉴스">
+
+      <div class="sr-only">4 / 8</div>
+      <h2 class="sr-only">
+        활동지원사업 간담회 및 이용인교육
+      </h2>
+
+      <img
+        src="images/card4.png"
+        alt="활동지원사업 간담회 및 이용인교육"
+        class="card-image">
+
+      <p class="sr-only">
+        활동지원사업 간담회와 이용인교육.
+
+        가을의 향을 물씬 느낄 수 있는 10월 22일,
+        이용인과 활동지원사가 함께하는
+        간담회 및 이용인 교육을 진행했습니다.
+
+        파주 DMZ플러스 사과농장에서
+        사과와 배를 수확하고,
+        벽초지수목원 국화축제를 관람하며
+        가을의 정취를 나누었습니다.
+
+        이번 행사는 함께하는 체험과 소통을 통해
+        이용인과 활동지원사 간의 친밀감을 높이고,
+        서로를 이해하며 신뢰를 쌓는
+        뜻깊은 시간이 되었습니다.
+
+        앞으로도 다양한 교류 활동을 통해
+        따뜻한 동행을 이어가겠습니다.
+
+        사진 설명:
+        사과밭에서 함께 촬영한 단체사진,
+        직접 수확한 사과를 이리저리 살펴보는 참여자들,
+        아버지와 아이가 함께 사과를 따는 모습.
+      </p>
+    </div>
+
+    <!-- 원고 4 : 5페이지 -->
+    <div class="slide"
+         aria-hidden="true"
+         aria-label="5번 카드뉴스">
+
+      <div class="sr-only">5 / 8</div>
+      <h2 class="sr-only">VIP 페스티벌</h2>
+
+      <img
+        src="images/card5.png"
+        alt="VIP 페스티벌"
+        class="card-image">
+
+      <p class="sr-only">
+        VIP 페스티벌.
+
+        10월 24일,
+        VIP 페스티벌은 뜨거운 열정과 울림으로
+        가득 찼습니다.
+
+        예상보다 많은 관객이 공연장을 찾았으며
+        안윤환 사회자의 재치 있고 매끄러운 진행으로
+        축제의 열기를 더했습니다.
+
+        우리동작 나름밴드와 악기교실,
+        오카리나 교육생, 오감밴드의
+        다채로운 공연에 관객들의 환호와 박수가
+        어우러지며 공연장은 감동으로 물들었습니다.
+
+        공연자와 관객이 하나의 호흡으로
+        무대를 완성하며 음악으로 하나 되었던
+        그날의 순간!
+
+        모두의 마음에 오래도록
+        잊지 못할 여운을 남겼습니다.
+
+        내년에 더욱 풍성하고 감동적인 무대로
+        돌아올 VIP 페스티벌도 많이 기대해 주세요!
+
+        사진 설명:
+        악기교실 보컬 수강생의 열정적인 노래 무대,
+        오감밴드의 신나는 공연,
+        오카리나 교육생들이 선보이는
+        다채로운 연주 무대.
+      </p>
+    </div>
+
+    <!-- 원고 5-1, 5-2 : 6페이지 -->
+    <div class="slide"
+         aria-hidden="true"
+         aria-label="6번 카드뉴스">
+
+      <div class="sr-only">6 / 8</div>
+
+      <h2 class="sr-only">
+        제46회 전국장애인체육대회 쇼다운 서울팀 종합우승과
+        2026 IBSA 쇼다운 월드 마스터즈
+      </h2>
+
+      <img
+        src="images/card6.png"
+        alt="전국장애인체육대회 쇼다운 서울팀과 IBSA 쇼다운 월드 마스터즈 국가대표팀"
+        class="card-image">
+
+      <p class="sr-only">
+        제46회 전국장애인체육대회
+        쇼다운 서울팀 종합우승.
+
+        제주에서 열린
+        ‘제46회 전국장애인체육대회’
+        쇼다운 부문에서 서울팀이
+        종합우승이라는 값진 결실을 맺었습니다.
+
+        서울팀은 여자 개인전 금·은메달에 이어
+        단체전 금메달까지 차지하며
+        뛰어난 기량을 선보였습니다.
+
+        메달의 색깔에 상관없이,
+        매 경기 집중력과 투혼으로 쇼다운을 빛낸
+        모든 시도 선수단의 값진 도전과
+        성과를 응원합니다!
+
+        사진 설명:
+        목에 메달을 걸고 파이팅 포즈를 취하고 있는
+        쇼다운 서울 대표팀 단체사진.
+
+        2026 IBSA 쇼다운 월드 마스터즈.
+
+        대한민국 쇼다운 국가대표팀
+        안민선, 박나연, 한현종 선수는
+        지난 10월 22일부터 25일까지
+        이탈리아에서 열린
+        ‘2026 IBSA 쇼다운 월드 마스터즈’에
+        비유럽 국가 최초로 공식 초청되어 출전했습니다.
+
+        이선영 감독과 이유진 코치의 지도 아래
+        세계 정상급 선수들과 맞서
+        여자부 안민선 7위, 박나연 8위,
+        남자부 한현종 12위라는
+        값진 결실을 맺었습니다.
+
+        세계 무대에서 끊임없이 도전하며
+        값진 경험을 쌓아가는 선수단에게
+        따뜻한 박수와 응원을 보내주세요!
+
+        사진 설명:
+        쇼다운 대한민국 국가대표팀이
+        환영 문구가 적힌 피켓을 들고
+        환하게 웃는 모습.
+      </p>
+    </div>
+
+    <!-- 원고 6 : 7페이지 -->
+    <div class="slide"
+         aria-hidden="true"
+         aria-label="7번 카드뉴스">
+
+      <div class="sr-only">7 / 8</div>
+      <h2 class="sr-only">
+        10월 15일, 흰지팡이의 날이란?
+      </h2>
+
+      <img
+        src="images/card7.png"
+        alt="흰지팡이의 날과 흰지팡이의 의미"
+        class="card-image">
+
+      <p class="sr-only">
+        10월 15일, 흰지팡이의 날이란?
+
+        첫 번째, 흰지팡이의 날.
+
+        세계시각장애인연합회 WBU는
+        시각장애인의 권리와 자립에 대한
+        사회적 관심을 높이기 위해
+        매년 10월 15일을
+        ‘흰지팡이의 날’로 제정했습니다.
+
+        매년 10월 15일 전후로
+        시각장애인의 권리를 알리고
+        장애에 대한 올바른 인식을
+        확산하기 위한 다양한 행사가 열립니다.
+
+        두 번째, 흰지팡이의 의미.
+
+        흰지팡이는 일반 지팡이와 달리
+        시각장애인의 보행을 위해 사용되는
+        고유한 도구이자,
+        단순한 이동 보조기구를 넘어
+        ‘자립과 독립’을 상징합니다.
+
+        사진 설명:
+        흰지팡이를 활용해 보행하는 모습,
+        흰지팡이를 들고 있는 남성 일러스트.
+      </p>
+    </div>
+
+    <!-- 원고 7 : 8페이지 -->
+    <div class="slide"
+         aria-hidden="true"
+         aria-label="8번 카드뉴스">
+
+      <div class="sr-only">8 / 8</div>
+      <h2 class="sr-only">오시는 길 및 후원 안내</h2>
+
+      <img
+        src="images/card8.png"
+        alt="우리동작 오시는 길 및 후원 안내"
+        class="card-image">
+
+      <a
+        href="https://naver.me/GmpjgPlH"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="survey-button">
+        만족도 조사 참여하기
+      </a>
+
+      <p class="sr-only">
+        오시는 길.
+
+        오른쪽 상단의 만족도 조사 버튼을 통해
+        의견을 남겨주시면,
+        우리동작 웹진의 발전과 개선에
+        큰 도움이 됩니다.
+
+        후원 안내.
+
+        국민은행 029301-04-251295.
+        예금주 사단법인 윌.
+
+        소득세법 제52조의 4,
+        법인세법 제24조에 의해
+        연말정산에서 세금혜택을 받으실 수 있습니다.
+
+        열린터:
+        서울시 동작구 상도로 43,
+        정원빌딩 지하 1층.
+
+        사무실:
+        서울시 동작구 상도로 36,
+        골든노블레스 2층.
+
+        우리동작 대표전화 02-812-2536.
+        근로지원 서비스 02-812-2538.
+        장애인활동지원 서비스 02-817-2536.
+
+        강남 및 서울동부 지역
+        장애인활동지원 서비스 강남윌
+        02-6956-1006.
+
+        팩스 02-6280-2536.
+        홈페이지 www.wdcil.org.
+        유튜브 ‘우리동작CIL’ 검색.
+
+        인스타그램 wooridjcil.
+        페이스북 ‘우리동작장애인자립생활센터’ 페이지.
+
+        발행인 강윤택.
+        발행월 2026년 11월.
+        디자인 및 발행처
+        우리동작장애인자립생활센터.
+      </p>
+    </div>
+
+    <!-- 재생 버튼 -->
+    <div class="controls"
+         role="group"
+         aria-label="카드뉴스 재생 제어">
+
+      <button
+        type="button"
+        onclick="prevSlide()"
+        aria-label="이전 장으로 이동">
+        이전
+      </button>
+
+      <button
+        type="button"
+        id="autoplayBtn"
+        onclick="startAutoPlay()"
+        aria-label="자동 재생 시작"
+        aria-describedby="autoplay-guide"
+        aria-pressed="false">
+        자동 재생 시작
+      </button>
+
+      <button
+        type="button"
+        class="secondary"
+        onclick="speakCurrentSlide()"
+        aria-label="현재 장 듣기">
+        현재 장 듣기
+      </button>
+
+      <button
+        type="button"
+        class="danger"
+        onclick="stopAutoPlay()"
+        aria-label="자동 재생 정지">
+        정지
+      </button>
+
+      <button
+        type="button"
+        onclick="nextSlide()"
+        aria-label="다음 장으로 이동">
+        다음
+      </button>
+    </div>
+
+    <!-- 페이지 이동 -->
+    <div class="dots"
+         role="group"
+         aria-label="카드뉴스 장 선택">
+
+      <span class="dot active" role="button" tabindex="0"
+        aria-label="1장으로 이동"
+        onclick="manualGoToSlide(0)"
+        onkeydown="handleDotKey(event,0)"></span>
+
+      <span class="dot" role="button" tabindex="0"
+        aria-label="2장으로 이동"
+        onclick="manualGoToSlide(1)"
+        onkeydown="handleDotKey(event,1)"></span>
+
+      <span class="dot" role="button" tabindex="0"
+        aria-label="3장으로 이동"
+        onclick="manualGoToSlide(2)"
+        onkeydown="handleDotKey(event,2)"></span>
+
+      <span class="dot" role="button" tabindex="0"
+        aria-label="4장으로 이동"
+        onclick="manualGoToSlide(3)"
+        onkeydown="handleDotKey(event,3)"></span>
+
+      <span class="dot" role="button" tabindex="0"
+        aria-label="5장으로 이동"
+        onclick="manualGoToSlide(4)"
+        onkeydown="handleDotKey(event,4)"></span>
+
+      <span class="dot" role="button" tabindex="0"
+        aria-label="6장으로 이동"
+        onclick="manualGoToSlide(5)"
+        onkeydown="handleDotKey(event,5)"></span>
+
+      <span class="dot" role="button" tabindex="0"
+        aria-label="7장으로 이동"
+        onclick="manualGoToSlide(6)"
+        onkeydown="handleDotKey(event,6)"></span>
+
+      <span class="dot" role="button" tabindex="0"
+        aria-label="8장으로 이동"
+        onclick="manualGoToSlide(7)"
+        onkeydown="handleDotKey(event,7)"></span>
+    </div>
+
+    <div
+      class="status"
+      id="status"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true">
+      대기 중
+    </div>
+
+    <div style="margin-top:20px;">
+      <img
+        src="https://visitor-badge.laobi.icu/badge?page_id=jsh0902.vol29"
+        alt="조회수">
+    </div>
+
+  </div>
+
+  <script>
+    let wakeLock = null;
+
+    async function requestWakeLock(){
+      try {
+        if ("wakeLock" in navigator && wakeLock === null) {
+          wakeLock = await navigator.wakeLock.request("screen");
+        }
+      } catch(error) {
+        console.log("화면 꺼짐 방지 실패:", error);
+      }
+    }
+
+    async function releaseWakeLock(){
+      if (wakeLock !== null) {
+        try {
+          await wakeLock.release();
+        } catch(error) {
+          console.log("화면 꺼짐 방지 해제 실패:", error);
+        }
+        wakeLock = null;
+      }
+    }
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    const statusEl = document.getElementById("status");
+    const autoplayBtn = document.getElementById("autoplayBtn");
+
+    let autoPlay = false;
+    let currentAudio = null;
+    let playbackToken = 0;
+    let advanceTimer = null;
+
+    function updateStatus(text){
+      statusEl.textContent = text;
+    }
+
+    function updateAutoPlayButtonState(isPlaying){
+      autoplayBtn.setAttribute(
+        "aria-pressed",
+        isPlaying ? "true" : "false"
+      );
+
+      autoplayBtn.textContent =
+        isPlaying ? "자동 재생 중" : "자동 재생 시작";
+
+      autoplayBtn.setAttribute(
+        "aria-label",
+        isPlaying ? "자동 재생 실행 중" : "자동 재생 시작"
+      );
+    }
+
+    function showSlide(index){
+      slides.forEach((slide, i) => {
+        const isActive = i === index;
+
+        slide.classList.toggle("active", isActive);
+
+        slide.setAttribute(
+          "aria-hidden",
+          isActive ? "false" : "true"
+        );
+
+        dots[i].classList.toggle("active", isActive);
+
+        dots[i].setAttribute(
+          "aria-current",
+          isActive ? "true" : "false"
+        );
+      });
+
+      currentSlide = index;
+      updateStatus(`${currentSlide + 1}장으로 이동`);
+    }
+
+    function getAudioPath(index){
+      return `audio/card${index + 1}.mp3`;
+    }
+
+    function getAudioPaths(index){
+      if (index === 5) {
+        return [
+          "audio/card6-1.mp3",
+          "audio/card6-2.mp3"
+        ];
+      }
+
+      return [getAudioPath(index)];
+    }
+
+    function stopCurrentAudio(){
+      playbackToken++;
+
+      if (advanceTimer !== null) {
+        clearTimeout(advanceTimer);
+        advanceTimer = null;
+      }
+
+      if (currentAudio) {
+        currentAudio.onended = null;
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+    }
+
+    function playAudioForSlide(index, onEndCallback){
+      stopCurrentAudio();
+
+      const token = playbackToken;
+      const audioPaths = getAudioPaths(index);
+      let audioIndex = 0;
+
+      function playNextAudio(){
+        if (token !== playbackToken) return;
+
+        if (audioIndex >= audioPaths.length) {
+          currentAudio = null;
+
+          if (typeof onEndCallback === "function") {
+            onEndCallback();
+          }
+          return;
+        }
+
+        const audio = new Audio(audioPaths[audioIndex]);
+        currentAudio = audio;
+        audioIndex++;
+
+        audio.onplay = function(){
+          if (token !== playbackToken) return;
+
+          updateStatus(
+            `${index + 1}장 음성 ${audioIndex}/${audioPaths.length} 재생 중`
+          );
+        };
+
+        audio.onended = function(){
+          if (token !== playbackToken) return;
+          if (currentAudio !== audio) return;
+
+          playNextAudio();
+        };
+
+        audio.onerror = function(){
+          if (token !== playbackToken) return;
+
+          updateStatus("오디오 파일을 불러오지 못했습니다");
+          autoPlay = false;
+          updateAutoPlayButtonState(false);
+          releaseWakeLock();
+        };
+
+        audio.play().catch(() => {
+          if (token !== playbackToken) return;
+
+          updateStatus(
+            "음성 재생이 차단되었습니다. 재생 버튼을 다시 눌러주세요."
+          );
+
+          autoPlay = false;
+          updateAutoPlayButtonState(false);
+          releaseWakeLock();
+        });
+      }
+
+      playNextAudio();
+    }
+
+    function speakCurrentSlide(){
+      autoPlay = false;
+      updateAutoPlayButtonState(false);
+      releaseWakeLock();
+
+      playAudioForSlide(currentSlide, function(){
+        updateStatus(`${currentSlide + 1}장 재생 완료`);
+      });
+    }
+
+    function playSlideAndAdvance(){
+      if (!autoPlay) return;
+
+      playAudioForSlide(currentSlide, function(){
+        if (!autoPlay) return;
+
+        if (currentSlide < slides.length - 1) {
+          showSlide(currentSlide + 1);
+
+          advanceTimer = setTimeout(function(){
+            advanceTimer = null;
+            playSlideAndAdvance();
+          }, 800);
+
+        } else {
+          autoPlay = false;
+          updateAutoPlayButtonState(false);
+          releaseWakeLock();
+
+          updateStatus("전체 카드뉴스 재생이 끝났습니다");
+        }
+      });
+    }
+
+    function startAutoPlay(){
+      stopCurrentAudio();
+
+      autoPlay = true;
+      updateAutoPlayButtonState(true);
+      updateStatus("자동 재생 시작");
+
+      requestWakeLock();
+      playSlideAndAdvance();
+    }
+
+    function stopAutoPlay(){
+      autoPlay = false;
+      updateAutoPlayButtonState(false);
+
+      stopCurrentAudio();
+      releaseWakeLock();
+
+      updateStatus("정지됨");
+    }
+
+    function nextSlide(){
+      stopAutoPlay();
+
+      let next = currentSlide + 1;
+
+      if (next >= slides.length) {
+        next = 0;
+      }
+
+      showSlide(next);
+    }
+
+    function prevSlide(){
+      stopAutoPlay();
+
+      let prev = currentSlide - 1;
+
+      if (prev < 0) {
+        prev = slides.length - 1;
+      }
+
+      showSlide(prev);
+    }
+
+    function manualGoToSlide(index){
+      stopAutoPlay();
+      showSlide(index);
+    }
+
+    function handleDotKey(event, index){
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        manualGoToSlide(index);
+      }
+    }
+
+    showSlide(0);
+    updateAutoPlayButtonState(false);
+  </script>
+
+  <!-- 행사 포스터 팝업 -->
+  <div
+    id="popup"
+    class="popup-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-label="행사 홍보 안내">
+
+    <div class="popup-box">
+
+      <img
+        src="images/popup.png"
+        alt="29호 행사 홍보 포스터"
+        class="popup-image">
+
+      <button
+        type="button"
+        class="popup-exit"
+        onclick="closePopup()">
+        팝업 나가기
+      </button>
+
+    </div>
+  </div>
+
+  <script>
+    function closePopup(){
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
